@@ -117,9 +117,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblLanche" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="lblLanche" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblQuantLanche" max="32767" attributes="0"/>

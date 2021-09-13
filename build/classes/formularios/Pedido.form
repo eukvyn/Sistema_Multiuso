@@ -311,14 +311,16 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="tfBairro" max="32767" attributes="0"/>
-                              <Component id="cbPag" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
-                              <Component id="cbEndereco" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="ftfNum" alignment="0" pref="212" max="32767" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="cbEndereco" alignment="0" pref="127" max="32767" attributes="0"/>
+                                  <Component id="cbPag" alignment="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="183" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

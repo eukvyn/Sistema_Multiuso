@@ -18,7 +18,7 @@ public class Exportar {
             tipoLanche, tipoBebida;
 
     // MÉTODOS ESPECIAIS GETTERS E SETTERS
-    
+
     public String getquantLanche() {
         return quantLanche;
     }
@@ -49,9 +49,6 @@ public class Exportar {
     
     private String endRua, endNum, endBairro, 
                    tipoEndereco, tipoPag;
-
-   
-    
     
     // MÉTODOS ESPECIAIS GETTERS E SETTERS
 
@@ -91,5 +88,20 @@ public class Exportar {
     }
     
     
+    private String novoLogin = "123", novaSenha = "123";
+    
+    public String getNovoLogin() {
+        return novoLogin;
+    }
+    public void setNovoLogin(String novoLogin) {
+        this.novoLogin = novoLogin;
+    }
 
+    public String getNovaSenha() {
+        return novaSenha;
+    }
+    public void setNovaSenha(String novaSenha) {
+        this.novaSenha = novaSenha;
+    }
+    
 }
