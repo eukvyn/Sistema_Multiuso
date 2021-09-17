@@ -1,5 +1,7 @@
 package formularios;
 
+import conexao.Conexao;
+import java.sql.*;
 import javax.swing.JOptionPane;
 
 /*
@@ -7,18 +9,50 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author janio
  */
 public class Login extends javax.swing.JFrame {
 
+    Connection conexao = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+
+    public void logar() {
+        String sql = "select * from tbusuarios where login=? and senha=?";
+
+        try {
+
+            //as linhas abaixo preparam a consulta ao Banco de dados, capturando
+            //o que foi digitado no Jframe, o "?" é substituido por esse conteudo
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, tfLogin.getText());
+            pst.setString(2, String.valueOf(pfSenhaDigitada.getPassword()));
+
+            //a linha abaixo executa a query
+            rs = pst.executeQuery();
+
+            //comparando as senhas digitadas no banco de dados
+            if (rs.next()) {
+                Main principal = new Main();
+                principal.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Login e/ou Senha incorreto(a)", "Erro", 2);
+            }
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+        }
+    }
+
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
+        conexao = Conexao.conector();
+        System.out.println(conexao);
     }
 
     /**
@@ -147,17 +181,19 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
-        Exportar exportar = new Exportar();
+        logar();
         
-        String senhaDigitada = String.valueOf(pfSenhaDigitada.getPassword());
-        
-        if (tfLogin.getText().equals(exportar.getNovoLogin()) && senhaDigitada.equals(exportar.getNovaSenha())) {
-            Main principal = new Main();
-            principal.setVisible(true);
-            dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Login e/ou Senha incorreto(a)", "Erro", 2);
-        }
+        //Exportar exportar = new Exportar();
+
+        //String senhaDigitada = String.valueOf(pfSenhaDigitada.getPassword());
+        //if (tfLogin.getText().equals(exportar.getNovoLogin()) && senhaDigitada.equals(exportar.getNovaSenha())) {
+        //    Main principal = new Main();
+        //    principal.setVisible(true);
+        //    dispose();
+        //} else {
+        //    JOptionPane.showMessageDialog(null, "Login e/ou Senha incorreto(a)", "Erro", 2);
+        //}
+
     }//GEN-LAST:event_btnLogarActionPerformed
 
     private void btnRedefinirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedefinirActionPerformed
