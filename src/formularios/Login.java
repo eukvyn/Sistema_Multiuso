@@ -20,7 +20,7 @@ public class Login extends javax.swing.JFrame {
     ResultSet rs = null;
 
     public void logar() throws SQLException {
-        String sql = "select * from tbusuarios where usuario=? and senha='" + "?" + "'";
+        String sql = "select * from tbusuarios where usuario=? and senha=?";
 
         try {
 
