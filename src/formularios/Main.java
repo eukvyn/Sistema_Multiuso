@@ -5,6 +5,10 @@
  */
 package formularios;
 
+import java.text.DateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author janio
@@ -31,14 +35,17 @@ public class Main extends javax.swing.JFrame {
         meCalculadora = new javax.swing.JMenuItem();
         mePedido = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        lblUsuario = new javax.swing.JLabel();
+        lblData = new javax.swing.JLabel();
+        Menu = new javax.swing.JMenuBar();
+        menFun = new javax.swing.JMenu();
+        menFunCad = new javax.swing.JMenuItem();
+        menFunCal = new javax.swing.JMenuItem();
+        menFunPed = new javax.swing.JMenuItem();
+        menSob = new javax.swing.JMenu();
+        menSobDes = new javax.swing.JMenuItem();
+        menSai = new javax.swing.JMenu();
+        menSaiSai = new javax.swing.JMenuItem();
 
         meCalculadora.setText("Calculadora");
         meCalculadora.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -64,116 +71,149 @@ public class Main extends javax.swing.JFrame {
                 formMouseReleased(evt);
             }
         });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/um sistema para fazer o que quiser.png"))); // NOI18N
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/page.png"))); // NOI18N
-        jMenu1.setText("Funções");
+        lblUsuario.setText("Usuário: ");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icon-png-calculator.png"))); // NOI18N
-        jMenuItem1.setText("Calculadora");
-        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblData.setText("Data:");
+
+        menFun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/page.png"))); // NOI18N
+        menFun.setText("Funções");
+
+        menFunCad.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menFunCad.setText("Cadastro");
+        menFunCad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menFunCadActionPerformed(evt);
+            }
+        });
+        menFun.add(menFunCad);
+
+        menFunCal.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menFunCal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icon-png-calculator.png"))); // NOI18N
+        menFunCal.setText("Calculadora");
+        menFunCal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jMenuItem1MouseReleased(evt);
+                menFunCalMouseReleased(evt);
             }
         });
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        menFunCal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                menFunCalActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        menFun.add(menFunCal);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icon-png-cadastro.png"))); // NOI18N
-        jMenuItem2.setText("Pedido");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        menFunPed.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menFunPed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icon-png-cadastro.png"))); // NOI18N
+        menFunPed.setText("Pedido");
+        menFunPed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                menFunPedActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        menFun.add(menFunPed);
 
-        jMenuBar1.add(jMenu1);
+        Menu.add(menFun);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/feed.png"))); // NOI18N
-        jMenu2.setText("Sobre");
-        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+        menSob.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/feed.png"))); // NOI18N
+        menSob.setText("Sobre");
+        menSob.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jMenu2MousePressed(evt);
+                menSobMousePressed(evt);
             }
         });
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem3.setText("Descrição");
-        jMenuItem3.addMouseListener(new java.awt.event.MouseAdapter() {
+        menSobDes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menSobDes.setText("Descrição");
+        menSobDes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jMenuItem3MousePressed(evt);
+                menSobDesMousePressed(evt);
             }
         });
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        menSobDes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                menSobDesActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        menSob.add(menSobDes);
 
-        jMenuBar1.add(jMenu2);
+        Menu.add(menSob);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/door_out.png"))); // NOI18N
-        jMenu3.setText("Sair");
+        menSai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/door_out.png"))); // NOI18N
+        menSai.setText("Sair");
 
-        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem5.setText("Sair");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        menSaiSai.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menSaiSai.setText("Sair");
+        menSaiSai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                menSaiSaiActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem5);
+        menSai.add(menSaiSai);
 
-        jMenuBar1.add(jMenu3);
+        Menu.add(menSai);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(Menu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblUsuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblData)
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUsuario)
+                    .addComponent(lblData))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(414, 337));
+        setSize(new java.awt.Dimension(414, 389));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void menFunCalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menFunCalActionPerformed
         Calculadora calculadora = new Calculadora();
         calculadora.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_menFunCalActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        dispose();
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    private void menSaiSaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menSaiSaiActionPerformed
+        int sair = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?", "Atenção", JOptionPane.YES_NO_OPTION);
+        if (sair == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        } 
+    }//GEN-LAST:event_menSaiSaiActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void menFunPedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menFunPedActionPerformed
         Pedido pedido = new Pedido();
         pedido.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_menFunPedActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void menSobDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menSobDesActionPerformed
         Descricao descricao = new Descricao();
         descricao.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_menSobDesActionPerformed
 
-    private void jMenuItem1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseReleased
+    private void menFunCalMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menFunCalMouseReleased
         //
-    }//GEN-LAST:event_jMenuItem1MouseReleased
+    }//GEN-LAST:event_menFunCalMouseReleased
 
     private void meCalculadoraMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_meCalculadoraMousePressed
         Calculadora calculadora = new Calculadora();
@@ -191,14 +231,25 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formMouseReleased
 
-    private void jMenu2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MousePressed
+    private void menSobMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menSobMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu2MousePressed
+    }//GEN-LAST:event_menSobMousePressed
 
-    private void jMenuItem3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem3MousePressed
+    private void menSobDesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menSobDesMousePressed
         Descricao descricao = new Descricao();
         descricao.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3MousePressed
+    }//GEN-LAST:event_menSobDesMousePressed
+
+    private void menFunCadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menFunCadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menFunCadActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // as linhas abaixo substituem a label lbldata pela data atual do sistema
+        Date data = new Date();
+        DateFormat formatador = DateFormat.getDateInstance(DateFormat.SHORT);
+        lblData.setText(formatador.format(data));
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -236,17 +287,20 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar Menu;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JLabel lblData;
+    private javax.swing.JLabel lblUsuario;
     private javax.swing.JMenuItem meCalculadora;
     private javax.swing.JMenuItem mePedido;
+    private javax.swing.JMenu menFun;
+    private javax.swing.JMenuItem menFunCad;
+    private javax.swing.JMenuItem menFunCal;
+    private javax.swing.JMenuItem menFunPed;
+    private javax.swing.JMenu menSai;
+    private javax.swing.JMenuItem menSaiSai;
+    private javax.swing.JMenu menSob;
+    private javax.swing.JMenuItem menSobDes;
     private javax.swing.JPopupMenu pmMain;
     // End of variables declaration//GEN-END:variables
 }

@@ -13,6 +13,10 @@ import java.sql.*;
  * @author janio
  */
 public class Conexao {
+        
+        private static String url="jdbc:mysql://localhost:3306/sistemamultiuso";
+        private static String user="root";
+        private static String password="#13Out1982#";
     
     public static Connection conector(){    
         
@@ -20,9 +24,6 @@ public class Conexao {
         
         // Armazenando Informações referentes ao banco
         String driver = "com.mysql.jc.jdbc.Driver";
-        String url="jdbc:mysql://localhost:3306/sistemamultiuso";
-        String user="root";
-        String password="#13Out1982#";
         
         try {
             // tentar estabelecer a conexão
